@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Web Client - Play Minecraft in Your Browser</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loading-content">
+            <img src="assets/icons/minecraft-logo.png" alt="Minecraft" class="logo">
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <p class="loading-text">Loading Minecraft...</p>
+        </div>
+    </div>
+
+    <div id="main-menu" class="screen">
+        <div class="menu-container">
+            <h1 class="game-title">Minecraft Web Client</h1>
+            <div class="menu-buttons">
+                <button id="singleplayer-btn" class="menu-btn">
+                    <span class="btn-icon">🎮</span> Singleplayer
+                </button>
+                <button id="multiplayer-btn" class="menu-btn">
+                    <span class="btn-icon">🌐</span> Multiplayer
+                </button>
+                <button id="settings-btn" class="menu-btn">
+                    <span class="btn-icon">⚙️</span> Settings
+                </button>
+                <button id="about-btn" class="menu-btn">
+                    <span class="btn-icon">ℹ️</span> About
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-screen" class="screen hidden">
+        <canvas id="game-canvas"></canvas>
+        <div id="crosshair">+</div>
+        <div id="hotbar">
+            <div class="hotbar-slot active" data-slot="0">1</div>
+            <div class="hotbar-slot" data-slot="1">2</div>
+            <div class="hotbar-slot" data-slot="2">3</div>
+            <div class="hotbar-slot" data-slot="3">4</div>
+            <div class="hotbar-slot" data-slot="4">5</div>
+            <div class="hotbar-slot" data-slot="5">6</div>
+            <div class="hotbar-slot" data-slot="6">7</div>
+            <div class="hotbar-slot" data-slot="7">8</div>
+            <div class="hotbar-slot" data-slot="8">9</div>
+        </div>
+        <div id="debug-info">
+            <div>XYZ: <span id="coords">0, 0, 0</span></div>
+            <div>FPS: <span id="fps">60</span></div>
+            <div>Biome: <span id="biome">Plains</span></div>
+        </div>
+    </div>
+
+    <div id="multiplayer-menu" class="screen hidden">
+        <div class="menu-container">
+            <h2>Multiplayer</h2>
+            <div class="server-list">
+                <div class="server-item">
+                    <div class="server-info">
+                        <h3>Local Server</h3>
+                        <p>localhost:25565</p>
+                    </div>
+                    <button class="connect-btn">Connect</button>
+                </div>
+            </div>
+            <div class="add-server">
+                <input type="text" id="server-ip" placeholder="Server IP (e.g., mc.hypixel.net)">
+                <input type="text" id="server-port" placeholder="Port (default: 25565)" value="25565">
+                <button id="connect-direct">Connect to Server</button>
+            </div>
+            <button id="back-to-main" class="back-btn">Back to Main Menu</button>
+        </div>
+    </div>
+
+    <div id="settings-menu" class="screen hidden">
+        <div class="menu-container">
+            <h2>Settings</h2>
+            <div class="settings-grid">
+                <div class="setting-item">
+                    <label>Render Distance:</label>
+                    <select id="render-distance">
+                        <option value="2">2 chunks</option>
+                        <option value="4">4 chunks</option>
+                        <option value="8" selected>8 chunks</option>
+                        <option value="16">16 chunks</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label>Graphics:</label>
+                    <select id="graphics-quality">
+                        <option value="fast">Fast</option>
+                        <option value="fancy" selected>Fancy</option>
+                        <option value="fabulous">Fabulous</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label>Controls:</label>
+                    <select id="control-scheme">
+                        <option value="wasd" selected>WASD</option>
+                        <option value="arrows">Arrow Keys</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label>Sound Volume:</label>
+                    <input type="range" id="sound-volume" min="0" max="100" value="50">
+                </div>
+            </div>
+            <button id="save-settings" class="menu-btn">Save Settings</button>
+            <button id="back-to-main-settings" class="back-btn">Back to Main Menu</button>
+        </div>
+    </div>
+
+    <div id="pause-menu" class="overlay hidden">
+        <div class="pause-content">
+            <h2>Game Paused</h2>
+            <button id="resume-game" class="menu-btn">Resume Game</button>
+            <button id="save-quit" class="menu-btn">Save and Quit</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/world.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
